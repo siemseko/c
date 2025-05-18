@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
@@ -18,6 +18,17 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    const auth = localStorage.getItem('auth');
+    if (auth) {
+      router.push('/system');
+    } else {
+      setIsCheckingAuth(false);
+    }
+  }, [router]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +50,15 @@ export default function LoginPage() {
     }, 1000);
   };
 
+  // Show loading state while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-gray-50 kantumruyPro">
       {/* Left Side - Login Form (30% width on desktop) */}
@@ -48,7 +68,7 @@ export default function LoginPage() {
             <div className="p-3 bg-green-100 rounded-full mb-3">
               <UserIcon className="h-8 w-8 text-green-600" />
             </div>
-            <h1 className="text-2xl text-gray-800 ">ចូលប្រើប្រព័ន្ធ</h1>
+            <h1 className="text-2xl text-gray-800">ចូលប្រើប្រព័ន្ធ</h1>
             <p className="text-gray-500 mt-1">សូមបំពេញព័ត៌មានចូលប្រើប្រាស់</p>
           </div>
 
@@ -113,7 +133,7 @@ export default function LoginPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className={`w-full py-3  rounded-lg relative overflow-hidden ${
+              className={`w-full py-3 rounded-lg relative overflow-hidden ${
                 loading
                   ? 'bg-green-400 cursor-not-allowed'
                   : 'bg-green-600 hover:bg-green-700 text-white'
@@ -149,7 +169,7 @@ export default function LoginPage() {
       <div className="hidden lg:flex lg:w-[70%] bg-green-500 items-center justify-center p-12 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-green-400 opacity-90"></div>
         <div className="relative z-10 max-w-2xl text-center text-white">
-          <h2 className="text-4xl  mb-6">សូមស្វាគមន៍មកកាន់ប្រព័ន្ធយើងខ្ញុំ</h2>
+          <h2 className="text-4xl mb-6">សូមស្វាគមន៍មកកាន់ប្រព័ន្ធយើងខ្ញុំ</h2>
           <p className="text-xl mb-8 leading-relaxed">
             ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសម្រាប់ក្រុមហ៊ុនអ្នក ដោយផ្តល់នូវបទពិសោធន៍ល្អបំផុត
           </p>

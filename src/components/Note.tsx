@@ -18,7 +18,7 @@ export default function NotePage() {
     }, [note]);
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="bg-white">
             <div className="container mx-auto px-4 py-8">
                 <div className="max-w-3xl mx-auto">
                     {/* Main Note Card */}
@@ -28,7 +28,7 @@ export default function NotePage() {
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
                             placeholder="Write your note here..."
-                            className="w-full h-64 p-4 text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none transition-all"
+                            className="w-full h-64 p-4 text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none transition-all"
                         />
                         <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
                             <span>Auto-saved to your browser</span>

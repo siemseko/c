@@ -143,20 +143,20 @@ export default function ImageToText() {
                 <button
                   onClick={handleCopyText}
                   disabled={!text || loading}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-[8px] text-white ${text && !loading ? 'bg-green-500 hover:bg-green-400' : 'bg-gray-400 cursor-not-allowed'} transition-colors`}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-[8px] text-white  ${text && !loading ? 'bg-green-500 hover:bg-green-400 cursor-pointer' : 'bg-green-300 cursor-not-allowed'} transition-colors`}
                 >
                   <Copy className="h-4 w-4" />
                   <span>{copySuccess || 'Copy'}</span>
                 </button>
               </div>
-              
+
               <textarea
                 value={loading ? 'Extracting text...' : text}
                 onChange={(e) => setText(e.target.value)}
                 className="w-full h-64 p-3 outline-none bg-gray-50 rounded-lg text-gray-800 border border-gray-300 resize-none"
                 readOnly={loading}
               />
-              
+
               {error && <div className="text-red-500 mt-2 text-sm">{error}</div>}
             </div>
 
@@ -166,8 +166,8 @@ export default function ImageToText() {
                 <h3 className="font-medium mb-2 text-gray-800">Recent Extractions</h3>
                 <div className="space-y-2 max-h-40 overflow-y-auto">
                   {history.map((item, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className="p-2 bg-gray-50 rounded cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200"
                       onClick={() => setText(item)}
                     >

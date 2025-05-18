@@ -205,7 +205,7 @@ export default function ResizeImages() {
                             <button
                                 onClick={handleResizeAndDownload}
                                 disabled={loading || files.length === 0}
-                                className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg flex-1 transition-colors disabled:opacity-50"
+                                className="flex items-center justify-center gap-2 cursor-pointer bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg flex-1 transition-colors disabled:opacity-50"
                             >
                                 {loading ? (
                                     <>
