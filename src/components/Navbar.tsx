@@ -102,7 +102,7 @@ export default function Navbar() {
                 localStorage.removeItem('auth');
                 console.log('Logged out');
                 setShowProfileDropdown(false);
-                window.location.href = '/login';
+                window.location.href = '/c/login';
               }}
               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-100"
             >
